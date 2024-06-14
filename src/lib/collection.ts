@@ -1,16 +1,13 @@
-export const fetchCollection = () => {
-  /**
-   * Step 2: Instead of directly returning the collection, fetch it from http://localhost:8001/cards
-   */
-  return [
-    {
-      id: 26166,
-      player: {
-        firstname: 'Karim',
-        lastname: 'Benzema',
-        birthday: '1987-12-19T08:38:50.090Z',
-        image: 'https://images.fotmob.com/image_resources/playerimages/26166.png'
-      }
+export const fetchCollection = async () => {
+  try {
+    const response = await fetch('http://localhost:8001/cards');
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
     }
-  ];
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Fetch error:', error);
+    throw error;
+  }
 };
