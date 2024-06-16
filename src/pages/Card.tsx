@@ -1,28 +1,25 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
-interface Player {
-  firstname: string;
-  lastname: string;
-  birthday: string;
-  image: string;
-}
+import { CardData } from '../types';
 
 interface CardProps {
-  player: Player;
+  player: CardData['player'];
   id: number;
 }
 
-// Styled components
 const CardContainer = styled.div`
   border: 1px solid #ddd;
   border-radius: 16px;
   padding: 24px;
-  max-width: 320px;
-  margin: 40px auto;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   background-color: #f9f9f9;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 const CardHeader = styled.div`
@@ -43,10 +40,11 @@ const LoadingIndicator = styled.div`
 `;
 
 const PlayerImage = styled.img`
-  max-width: 100%;
-  height: auto;
   border-radius: 8px;
   margin: auto;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
 `;
 
 const DobLabel = styled.p`
