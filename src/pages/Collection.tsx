@@ -69,14 +69,14 @@ const SortInput = styled.input`
 
 export const Collection: React.FC = () => {
   const [collection, setCollection] = useState<CardData[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<Boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [sortCriteria, setSortCriteria] = useState<string>('firstname');
 
   useEffect(() => {
     const getCollection = async () => {
       try {
-        const data = await fetchCollection();
+        const data:CardData[] = await fetchCollection();
         setCollection(data);
       } catch (error) {
         setError('Failed to fetch collection');

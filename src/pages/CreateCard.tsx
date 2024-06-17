@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 import styled from 'styled-components';
 import { CardData } from '../types';
 
@@ -52,10 +52,10 @@ const SuccessMessage = styled.div`
 `;
 
 export const CreateCard: React.FC = () => {
-  const [firstname, setFirstname] = useState('');
-  const [lastname, setLastname] = useState('');
-  const [birthday, setBirthday] = useState('');
-  const [image, setImage] = useState('');
+  const [firstname, setFirstname] = useState<string>('');
+  const [lastname, setLastname] = useState<string>('');
+  const [birthday, setBirthday] = useState<string>('');
+  const [image, setImage] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
@@ -89,7 +89,7 @@ export const CreateCard: React.FC = () => {
     return true;
   };
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (!validateForm()) {
@@ -142,7 +142,7 @@ export const CreateCard: React.FC = () => {
             id="firstname"
             type="text"
             value={firstname}
-            onChange={(e) => setFirstname(e.target.value)}
+            onChange={(e:ChangeEvent<HTMLInputElement>) => setFirstname(e.target.value)}
           />
         </FormField>
         <FormField>
@@ -151,7 +151,7 @@ export const CreateCard: React.FC = () => {
             id="lastname"
             type="text"
             value={lastname}
-            onChange={(e) => setLastname(e.target.value)}
+            onChange={(e:ChangeEvent<HTMLInputElement>) => setLastname(e.target.value)}
           />
         </FormField>
         <FormField>
@@ -160,7 +160,7 @@ export const CreateCard: React.FC = () => {
             id="birthday"
             type="datetime-local"
             value={birthday}
-            onChange={(e) => setBirthday(e.target.value)}
+            onChange={(e:ChangeEvent<HTMLInputElement>) => setBirthday(e.target.value)}
           />
         </FormField>
         <FormField>
@@ -169,7 +169,7 @@ export const CreateCard: React.FC = () => {
             id="image"
             type="text"
             value={image}
-            onChange={(e) => setImage(e.target.value)}
+            onChange={(e:ChangeEvent<HTMLInputElement>) => setImage(e.target.value)}
           />
         </FormField>
         <Button type="submit">Create Card</Button>

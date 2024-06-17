@@ -37,6 +37,10 @@ const CardBody = styled.div`
 const LoadingIndicator = styled.div`
   font-size: 1em;
   color: #888;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const PlayerImage = styled.img`
